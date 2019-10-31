@@ -17,6 +17,13 @@ function App() {
       <Suspense fallback={<h1>Loading num...</h1>}>
         <Num resource={resource} />
       </Suspense>
+      <button
+        onClick={() => {
+          setResource(createResource());
+        }}
+      >
+        refresh data
+      </button>
     </div>
   );
 }
