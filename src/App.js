@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useState, useTransition } from "react";
 import "./App.css";
 import { createResource, wrapPromise } from "./person-api";
 import { Person } from "./Person";
@@ -17,6 +17,9 @@ function App() {
         return null;
       }
     }
+  });
+  const [startTransition, isPending] = useTransition({
+    timeoutMs: 4000
   });
   return (
     <div className="App">
@@ -48,10 +51,12 @@ function App() {
       </button>
       <button
         onClick={() => {
-          setResource(createResource());
+          startTransition(() => {
+            setResource(createResource());
+          });
         }}
       >
-        refresh data
+        refresh data {isPending ? "(Loading...)" : ""}
       </button>
     </div>
   );
