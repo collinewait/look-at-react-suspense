@@ -4,10 +4,10 @@ import { createResource } from "./person-api";
 import { Person } from "./Person";
 import { Num } from "./Num";
 
-const initialResource = createResource();
+// const initialResource = createResource();
 
 function App() {
-  const [resource, setResource] = useState(initialResource);
+  const [resource, setResource] = useState(() => createResource());
   return (
     <div className="App">
       <div>Another name here</div>
